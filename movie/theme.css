@@ -1,0 +1,99 @@
+:root {
+    --background-color: transparent;
+    --text-color: #171717;
+    --nav-bg: transparent;
+    --card-bg: transparent;
+    --hover-color: #ffe100;
+    --border-color: #cccccc;
+}
+
+[data-theme="dark"] {
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --nav-bg: #000000;
+    --card-bg: #000000;
+    --hover-color: #ffe100;
+    --border-color: #333333;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+section {
+    background: var(--background-color);
+}
+
+section nav {
+    background: var(--nav-bg);
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--hover-color);
+}
+
+.theme-toggle i {
+    transition: transform 0.3s ease;
+}
+
+[data-theme="dark"] .theme-toggle i {
+    transform: rotate(180deg);
+}
+
+/* Video modal styles */
+.video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin: 50px auto;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.close-modal {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 24px;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 1001;
+}
+
+#video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+#video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+} 
