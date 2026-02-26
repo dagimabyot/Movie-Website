@@ -11,18 +11,30 @@ interface HeroProps {
 
 export default function Hero({ movies, onTrailerClick }: HeroProps) {
   const [current, setCurrent] = useState(0);
-  const featured = movies.filter((m) => m.category === 'featured');
+  
+  // Get featured movies, fallback to popular, then to all
+  let featured = movies.filter((m) => m.category === 'featured');
+  if (featured.length === 0) {
+    featured = movies.filter((m) => m.category === 'popular');
+  }
+  if (featured.length === 0) {
+    featured = movies;
+  }
 
   useEffect(() => {
+    if (featured.length === 0) return;
+    
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % featured.length);
     }, 8000);
     return () => clearInterval(interval);
   }, [featured.length]);
 
-  const movie = featured[current];
+  if (featured.length === 0 || !featured[current]) {
+    return null;
+  }
 
-  if (!movie) return null;
+  const movie = featured[current];
 
   return (
     <div className="relative w-full h-screen overflow-hidden pt-16">
